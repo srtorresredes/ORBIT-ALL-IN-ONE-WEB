@@ -1082,20 +1082,29 @@
                 style="margin: 0 auto 20px auto; display: table; border-color: #9146ff; color: #9146ff; background: rgba(145, 70, 255, 0.1);">
                 SOCIAL PROOF // @SRTORRESPOKER
             </div>
-            <h1 class="glitch-text" style="font-size: clamp(40px, 8vw, 80px); line-height: 1.1; margin-bottom: 20px;">
+            <h1 class="glitch-text"
+                style="font-size: clamp(40px, 8vw, 80px); line-height: 1.1; margin-bottom: 20px; text-align: center;">
                 ORBIT ALL-IN-ONE <br> <span
                     style="color: transparent; -webkit-text-stroke: 1px #fff; opacity: 0.5;">POKER & STREAM
                     MANAGER</span>
             </h1>
 
             <!-- EVIDENCIA: STREAM HUD REAL -->
-            <div class="evidence-card" style="margin-bottom: 40px;">
+            <div class="evidence-card" style="margin-bottom: 40px; text-align: center;">
                 <img src="assets/slides/205001.png" alt="HUD Táctico en Vivo" loading="lazy"
                     style="width:100%; border: 1px solid var(--cyan-neon); box-shadow: 0 0 20px rgba(0,242,255,0.2); border-radius: 8px;">
                 <div
-                    style="font-size: 10px; color: var(--cyan-neon); font-family: 'JetBrains Mono'; margin-top: 5px; text-transform: uppercase;">
+                    style="font-size: 10px; color: var(--cyan-neon); font-family: 'Share Tech Mono'; margin-top: 5px; text-transform: uppercase;">
                     // HUD Táctico: Chronos & Session Delta - Live at Twitch</div>
             </div>
+
+            <h3
+                style="text-align: center; font-family: 'Orbitron', sans-serif; color: #fff; margin-bottom: 20px; font-size: 20px;">
+                <span class="pulse-led"
+                    style="display:inline-block; width:10px; height:10px; background:#ff0055; border-radius:50%; margin-right:10px; box-shadow:0 0 10px #ff0055;"></span>
+                <span style="color: #ff0055; text-shadow: 0 0 10px rgba(255, 0, 85, 0.5);">WATCH SR TORRES IN
+                    OPERATION</span>
+            </h3>
 
             <!-- CONTENEDOR DE VIDEO/CLIP -->
             <div class="twitch-embed-wrapper"
@@ -1103,16 +1112,11 @@
                 <iframe src="https://player.twitch.tv/?channel=srtorrespoker&parent=srtorresredes.github.io&muted=true"
                     height="100%" width="100%" allowfullscreen>
                 </iframe>
-                <div class="live-overlay" style="position: absolute; top: 15px; right: 15px; pointer-events: none;">
-                    <span
-                        style="background: #ff0000; color: white; padding: 4px 10px; border-radius: 4px; font-weight: 900; font-size: 10px; letter-spacing: 1px; box-shadow: 0 0 10px #ff0000;">EN
-                        VIVO AHORA</span>
-                </div>
             </div>
 
             <div style="text-align: center; margin-top: 20px;">
                 <a href="https://www.twitch.tv/srtorrespoker" target="_blank" class="btn"
-                    style="background: #9146ff; color: #fff; font-weight: 800; padding: 10px 25px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s;">
+                    style="background: #9146ff; color: #fff; font-weight: 800; padding: 10px 25px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s; animation: pulse-btn 2s infinite;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.429h-3.429l-3 3v-3H6.857V1.714h13.714Z" />
@@ -1123,6 +1127,48 @@
         </div>
     </section>
 
+    <style>
+        @keyframes pulse-led {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse-btn {
+            0% {
+                box-shadow: 0 0 0 0 rgba(145, 70, 255, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(145, 70, 255, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(145, 70, 255, 0);
+            }
+        }
+
+        .scan-line-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 242, 255, 0.02) 51%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 5;
+        }
+    </style>
+
     <section class="ai-section" id="vision">
         <div class="ai-container">
             <div class="ai-text">
@@ -1130,14 +1176,14 @@
                     style="border-color: var(--magenta-neon); color: var(--magenta-neon); background: rgba(255, 0, 255, 0.1);">
                     Voz Multimodelo v.2026</div>
                 <h2
-                    style="font-family: 'Outfit', sans-serif; font-size: clamp(30px, 5vw, 50px); color: #fff; margin-bottom: 30px; line-height: 1.1;">
+                    style="font-family: 'Orbitron', sans-serif; font-size: clamp(30px, 5vw, 50px); color: #fff; margin-bottom: 30px; line-height: 1.1;">
                     UNA VOZ, TRES GIGANTES.</h2>
                 <div class="evidence-card" style="margin-bottom: 25px;">
                     <!-- EVIDENCIA: INTERFAZ NEURAL & COMANDOS -->
                     <img src="assets/slides/205010.png" alt="Interfaz de Voz" loading="lazy"
                         style="width:100%; border-left: 3px solid var(--magenta-neon); border-radius: 4px;">
                     <div
-                        style="font-size: 10px; color: var(--magenta-neon); font-family: 'JetBrains Mono'; margin-top: 5px;">
+                        style="font-size: 10px; color: var(--magenta-neon); font-family: 'Share Tech Mono'; margin-top: 5px;">
                         // Visualización Espectral de Comandos de Voz</div>
                 </div>
                 <p style="font-size: 19px; color: var(--text-dim); margin-bottom: 30px;">Orbit no depende de un solo
@@ -1153,6 +1199,16 @@
                             style="color:#fff">Chronos Journal</b> para dictar notas rápidas de manos marcadas sin dejar
                         de mirar la acción en las otras mesas. Al terminar la sesión, mi estudio ya está organizado."
                     </p>
+                </div>
+                <!-- STREAMER SETUP SECTION -->
+                <div style="margin-top: 30px; border: 1px dashed var(--text-dim); padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #fff; margin-bottom: 10px;">🎥 STREAMER SETUP (OBS)</h4>
+                    <ul style="font-size: 13px; color: var(--text-dim); list-style: none; padding-left: 0;">
+                        <li>• Add Source: <b>Browser Source</b></li>
+                        <li>• URL: <b>.../overlay_obs.html</b></li>
+                        <li>• Filter: <b>Color Key (Custom Color #000000)</b></li>
+                        <li>• Dim: <b>1920x1080 (Fit to Screen)</b></li>
+                    </ul>
                 </div>
                 <ul style="color: var(--cyan-neon); list-style: none; font-weight: 700; font-size: 16px;">
                     <li style="margin-bottom: 15px;">⚡ Inferencia en Tiempo Real < 50ms</li>
@@ -1183,18 +1239,17 @@
         </div>
     </section>
 
-    <style>
-        .scan-line-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 50%, rgba(0, 242, 255, 0.02) 51%);
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 5;
-        }
+    .scan-line-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 242, 255, 0.02) 51%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 5;
+    }
     </style>
 
     <section class="philosophy-section" id="filosofia">
@@ -1382,14 +1437,17 @@
                         diferentes salas se unifican. Es una herramienta de contabilidad visual de alta precisión.</p>
                 </div>
 
-                <!-- Q4 -->
+                <!-- Q4 / TESTIMONY -->
                 <div class="faq-item"
-                    style="background: rgba(0, 20, 10, 0.4); border: 1px solid rgba(0, 255, 157, 0.1); border-radius: 12px; padding: 25px;">
-                    <h3 style="color: var(--magenta-neon); font-size: 18px; margin-bottom: 10px; font-weight: 700;">Soy
-                        Streamer, ¿qué me ofrece?</h3>
-                    <p style="color: var(--text-dim); line-height: 1.6;">Todo. Overlays HTML listos para OBS, alertas de
-                        "Manos Libres" para tu audiencia, y la capacidad de mostrar gráfico de sesión en tiempo real sin
-                        abrir Holdem Manager. Orbit convierte tu stream en un show tecnológico.</p>
+                    style="background: rgba(0, 20, 10, 0.4); border: 1px solid var(--magenta-neon); border-radius: 12px; padding: 25px; box-shadow: 0 0 20px rgba(255, 0, 255, 0.1);">
+                    <h3 style="color: var(--magenta-neon); font-size: 18px; margin-bottom: 10px; font-weight: 700;">//
+                        TESTIMONIO DEL CREADOR</h3>
+                    <p style="color: #fff; line-height: 1.6; font-style: italic;">"Esto no es software de terceros. Es
+                        una extensión de mi mente diseñada para el stream. Probado cada día en el frente de batalla en
+                        <a href='https://twitch.tv/srtorrespoker' target='_blank'
+                            style='color:var(--magenta-neon); text-decoration:none;'>twitch.tv/srtorrespoker</a>."</p>
+                    <div style="margin-top: 10px; text-align: right; font-size: 11px; color: var(--magenta-neon);">—
+                        @SrTorresPoker, Fundador Orbit Unit</div>
                 </div>
             </div>
         </div>
