@@ -1051,6 +1051,15 @@
                     style="color: #9146ff; text-shadow: 0 0 15px rgba(145, 70, 255, 0.5);">COMBATE REAL</span>
             </h3>
 
+            <!-- EVIDENCIA: STREAM HUD REAL -->
+            <div class="evidence-card" style="margin-bottom: 40px;">
+                <img src="assets/slides/205001.png" alt="HUD Táctico en Vivo" loading="lazy"
+                    style="width:100%; border: 1px solid var(--cyan-neon); box-shadow: 0 0 20px rgba(0,242,255,0.2); border-radius: 8px;">
+                <div
+                    style="font-size: 10px; color: var(--cyan-neon); font-family: 'JetBrains Mono'; margin-top: 5px; text-transform: uppercase;">
+                    // HUD Táctico: Chronos & Session Delta - Live at Twitch</div>
+            </div>
+
             <!-- CONTENEDOR DE VIDEO/CLIP -->
             <div class="twitch-embed-wrapper"
                 style="position: relative; padding-bottom: 56.25%; height: 0; background: #000; border: 1px solid #333; border-radius: 12px; overflow: hidden; box-shadow: 0 0 40px rgba(145, 70, 255, 0.15);">
@@ -1086,6 +1095,14 @@
                 <h2
                     style="font-family: 'Outfit', sans-serif; font-size: clamp(30px, 5vw, 50px); color: #fff; margin-bottom: 30px; line-height: 1.1;">
                     UNA VOZ, TRES GIGANTES.</h2>
+                <div class="evidence-card" style="margin-bottom: 25px;">
+                    <!-- EVIDENCIA: INTERFAZ NEURAL & COMANDOS -->
+                    <img src="assets/slides/205010.png" alt="Interfaz de Voz" loading="lazy"
+                        style="width:100%; border-left: 3px solid var(--magenta-neon); border-radius: 4px;">
+                    <div
+                        style="font-size: 10px; color: var(--magenta-neon); font-family: 'JetBrains Mono'; margin-top: 5px;">
+                        // Visualización Espectral de Comandos de Voz</div>
+                </div>
                 <p style="font-size: 19px; color: var(--text-dim); margin-bottom: 30px;">Orbit no depende de un solo
                     cerebro. Nuestra arquitectura híbrida alterna entre <b>Groq (Latencia Ultra-Baja)</b>, <b>OpenAI
                         (Razonamiento Complejo)</b> y <b>Gemini (Análisis Global)</b> para que tu voz sea ley en
@@ -1107,34 +1124,41 @@
                 </ul>
             </div>
             <div class="ai-visual">
-                <div class="ai-card">
-                    <div class="ai-status-bar">
-                        > AGENT_ORBIT: Processing...<br>
-                        > SOURCE: Groq LPU™ Engine<br>
-                        > Latency: <span class="latency-badge">24ms</span><br>
-                        > Deciphering: "Orbit, pon un rebuy en Stars"
-                    </div>
-                    <div style="height: 100px; display: flex; align-items: flex-end; gap: 5px;">
-                        <div
-                            style="flex: 1; background: var(--cyan-neon); height: 80%; animation: wave 1s infinite 0.1s;">
-                        </div>
-                        <div
-                            style="flex: 1; background: var(--magenta-neon); height: 40%; animation: wave 1s infinite 0.2s;">
-                        </div>
-                        <div
-                            style="flex: 1; background: var(--cyan-neon); height: 90%; animation: wave 1s infinite 0.3s;">
-                        </div>
-                        <div
-                            style="flex: 1; background: var(--magenta-neon); height: 60%; animation: wave 1s infinite 0.4s;">
-                        </div>
-                        <div
-                            style="flex: 1; background: var(--cyan-neon); height: 30%; animation: wave 1s infinite 0.5s;">
-                        </div>
-                    </div>
+                <!-- EVIDENCIA: LOBBY CENTRAL -->
+                <div style="position: relative; margin-bottom: 20px;">
+                    <img src="assets/slides/205002.png" alt="Dashboard Principal" loading="lazy"
+                        style="width:100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+                    <div
+                        style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); padding: 5px 10px; border-radius: 4px; font-size: 9px; color: #fff; font-family: monospace;">
+                        DASHBOARD V2.0 // LIVE</div>
+                    <div class="scan-line-overlay"></div>
+                </div>
+
+                <!-- EVIDENCIA: BÓVEDA MAESTRA -->
+                <div style="position: relative;">
+                    <img src="assets/slides/205007.png" alt="Bóveda Maestra" loading="lazy"
+                        style="width:100%; border-radius: 12px; border: 1px solid rgba(0,255,0,0.2); box-shadow: 0 10px 40px rgba(0,255,0,0.05);">
+                    <div
+                        style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); padding: 5px 10px; border-radius: 4px; font-size: 9px; color: #0f9; font-family: monospace;">
+                        VAULT CORE // SECURE</div>
                 </div>
             </div>
         </div>
     </section>
+
+    <style>
+        .scan-line-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 242, 255, 0.02) 51%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 5;
+        }
+    </style>
 
     <section class="philosophy-section" id="filosofia">
         <div class="section-header" style="text-align: center; margin-bottom: 100px;">
