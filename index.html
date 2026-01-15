@@ -498,7 +498,7 @@
 
         .glitch-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -506,33 +506,88 @@
 
         .glitch-card {
             background: rgba(10, 15, 25, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 242, 255, 0.2);
             padding: 50px;
             border-radius: 20px;
             position: relative;
             overflow: hidden;
             transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .glitch-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 242, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+        }
+
+        .glitch-card:hover::before {
+            transform: translateX(100%);
         }
 
         .glitch-card:hover {
             border-color: var(--cyan-neon);
-            transform: scale(1.02);
+            transform: translateY(-10px);
             background: rgba(10, 15, 25, 0.9);
+            box-shadow: 0 10px 40px rgba(0, 242, 255, 0.2);
         }
 
         .glitch-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 900;
             color: var(--cyan-neon);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             position: relative;
         }
 
+        /* Real Glitch Effect on Hover */
+        .glitch-card:hover .glitch-title {
+            animation: glitch-text 0.3s infinite;
+        }
+
+        @keyframes glitch-text {
+            0% {
+                transform: translate(0);
+                text-shadow: -2px 0 var(--magenta-neon), 2px 0 var(--cyan-neon);
+            }
+
+            20% {
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                transform: translate(-2px, -2px);
+                text-shadow: 2px 0 var(--magenta-neon), -2px 0 var(--cyan-neon);
+            }
+
+            60% {
+                transform: translate(2px, 2px);
+            }
+
+            80% {
+                transform: translate(2px, -2px);
+                text-shadow: -2px 0 var(--magenta-neon), 2px 0 var(--cyan-neon);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
         .glitch-card p {
-            font-size: 15px;
+            font-size: 16px;
             color: var(--text-dim);
             line-height: 1.8;
+            font-weight: 400;
         }
 
         .glitch-line {
@@ -540,25 +595,37 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 2px;
-            background: var(--cyan-neon);
-            transform: translateX(-100%);
-            transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+            height: 3px;
+            background: linear-gradient(to right, var(--cyan-neon), var(--magenta-neon));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
         .glitch-card:hover .glitch-line {
-            transform: translateX(0);
+            transform: scaleX(1);
         }
 
         .copilot-banner {
-            background: rgba(0, 242, 255, 0.03);
-            border: 1px dashed var(--cyan-neon);
-            padding: 60px;
+            background: rgba(0, 242, 255, 0.02);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            padding: 80px 40px;
             border-radius: 40px;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             position: relative;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
+            box-shadow: inset 0 0 50px rgba(0, 242, 255, 0.05);
+        }
+
+        .copilot-tag {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--magenta-neon);
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
         }
 
         @media (max-width: 768px) {
@@ -659,48 +726,60 @@
     </section>
 
     <section class="philosophy-section" id="filosofia">
-        <div class="section-header" style="text-align: center; margin-bottom: 80px;">
-            <div class="hero-badge">Manifiesto Orbit // La Verdad</div>
+        <div class="section-header" style="text-align: center; margin-bottom: 100px;">
+            <div class="hero-badge">Nuestra Filosofía // El Porqué</div>
             <h2
-                style="font-family: 'Outfit', sans-serif; font-size: clamp(35px, 6vw, 60px); color: #fff; margin-bottom: 25px;">
-                EL PÓKER MERECE UN <span style="color: var(--cyan-neon);">SISTEMA OPERATIVO</span></h2>
-            <p style="font-size: 18px; color: var(--text-dim); max-width: 800px; margin: 0 auto;">El jugador actual se
-                enfrenta a una fragmentación caótica. ORBIT nace para eliminar el ruido y devolverte el control total.
+                style="font-family: 'Outfit', sans-serif; font-size: clamp(35px, 6vw, 65px); color: #fff; margin-bottom: 25px; line-height: 1;">
+                NUESTRA FILOSOFÍA:<br><span style="color: var(--cyan-neon);">POR QUÉ ORBIT</span>
+            </h2>
+            <p style="font-size: 19px; color: var(--text-dim); max-width: 900px; margin: 0 auto; line-height: 1.6;">
+                Ya no se trata solo de jugar cartas; se trata de gestionar un ecosistema complejo de datos, finanzas y
+                entretenimiento en tiempo real. Orbit nace para eliminar la <b>fragmentación caótica</b>.
             </p>
         </div>
 
         <div class="glitch-grid">
+            <!-- Card 1: Caos Operativo -->
             <div class="glitch-card">
-                <div class="glitch-title" data-text="01. CAOS OPERATIVO">01. CAOS OPERATIVO</div>
-                <p>El multitabling de 12+ mesas genera una fatiga cognitiva extrema. ORBIT reduce la carga mental para
-                    que te mantengas en "La Zona" (Modo Zen) sin distracciones.</p>
+                <div class="glitch-title">01. Caos Operativo</div>
+                <p>Jugar 12+ mesas requiere una capacidad de procesamiento sobrehumana. Monitorear rangos y HUDs
+                    mientras decides en segundos genera una fatiga cognitiva inmensa. Orbit centraliza el control para
+                    que solo pienses en el <b>A-Game</b>.</p>
                 <div class="glitch-line"></div>
             </div>
+
+            <!-- Card 2: Gestión Financiera -->
             <div class="glitch-card">
-                <div class="glitch-title" data-text="02. GESTIÓN CRÍTICA">02. GESTIÓN CRÍTICA</div>
-                <p>La varianza es el enemigo silencioso. Automatizamos tu Bankroll Management para sellar los "Agujeros
-                    Negros" financieros que destruyen carreras.</p>
+                <div class="glitch-title">02. Gestión Crítica</div>
+                <p>La varianza es el enemigo silencioso. Sin un control estricto del Bankroll, incluso los ganadores
+                    pueden quebrar. Las hojas de cálculo son obsoletas; Orbit automatiza la protección de tu capital con
+                    precisión matemática.</p>
                 <div class="glitch-line"></div>
             </div>
+
+            <!-- Card 3: Carga del Streamer -->
             <div class="glitch-card">
-                <div class="glitch-title" data-text="03. CARGA DEL STREAMER">03. CARGA DEL STREAMER</div>
-                <p>Jugar tu A-Game mientras entretienes a una audiencia es una carga doble. Orbit automatiza la
-                    producción para que tú solo te preocupes de ganar.</p>
+                <div class="glitch-title">03. Carga del Streamer</div>
+                <p>Los creadores de contenido tienen doble carga: jugar su mejor póker y entretener a la audiencia.
+                    Orbit unifica la producción de streaming bajo una interfaz automatizada, transformando el juego en
+                    un espectáculo visual.</p>
                 <div class="glitch-line"></div>
             </div>
         </div>
 
-        <div style="margin-top: 100px; text-align: center;">
+        <div style="margin-top: 120px; text-align: center;">
             <div class="copilot-banner">
-                <span class="orbit-logo" style="margin-bottom: 10px;">Executive Summary</span>
-                <h3 style="font-size: clamp(24px, 4vw, 42px); font-weight: 900; color: #fff; letter-spacing: -1px;">
-                    ORBIT ES UN <span
-                        style="color: var(--magenta-neon); text-shadow: 0 0 20px var(--magenta-glow);">COPILOTO ACTIVO E
-                        INTELIGENTE</span>
+                <span class="copilot-tag">// RESUMEN EJECUTIVO</span>
+                <h3
+                    style="font-size: clamp(28px, 5vw, 48px); font-weight: 900; color: #fff; letter-spacing: -1px; line-height: 1.1;">
+                    MUCHAS HERRAMIENTAS SON PASIVAS.<br>
+                    <span style="color: var(--cyan-neon); text-shadow: 0 0 30px var(--cyan-glow);">ORBIT ES UN COPILOTO
+                        ACTIVO E INTELIGENTE.</span>
                 </h3>
                 <p
-                    style="margin-top: 20px; color: var(--text-dim); font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">
-                    Toma mejores decisiones. Ofrece un mejor espectáculo.
+                    style="margin-top: 30px; color: var(--text-dim); font-size: 17px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    Nacemos para que tomes mejores decisiones (ganes más dinero) y ofrezcas un mejor espectáculo (ganes
+                    más seguidores), reduciendo tu estrés operativo al mínimo absoluto.
                 </p>
             </div>
         </div>
@@ -710,8 +789,8 @@
         <div class="section-header">
             <h2 style="font-family: 'Outfit', sans-serif; font-size: 45px; margin-bottom: 20px;">ARSENAL DE ALTO
                 RENDIMIENTO</h2>
-            <p style="color: var(--text-dim); font-size: 20px;">Más de 80 herramientas categorizadas para el dominio
-                absoluto.</p>
+            <p style="color: var(--text-dim); font-size: 20px;">Más de 80 herramientas integradas en un <b>Copiloto
+                    Activo e Inteligente</b>.</p>
         </div>
 
         <div class="category-group">
