@@ -16,7 +16,7 @@
         :root {
             --bg-dark: #02050a;
             --bg-deep: #000000;
-            --card-bg: rgba(10, 15, 25, 0.8);
+            --card-bg: rgba(10, 15, 25, 0.85);
             --cyan-neon: #00f2ff;
             --cyan-glow: rgba(0, 242, 255, 0.4);
             --magenta-neon: #ff00ff;
@@ -24,6 +24,7 @@
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
             --border-glow: rgba(0, 242, 255, 0.2);
+            --poker-red: #ff3e3e;
         }
 
         * {
@@ -43,8 +44,9 @@
             line-height: 1.6;
             overflow-x: hidden;
             background-image:
-                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 15% 30%, rgba(0, 242, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 85% 70%, rgba(255, 0, 255, 0.08) 0%, transparent 40%),
+                url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
         }
 
         /* --- Custom Scrollbar --- */
@@ -63,7 +65,7 @@
 
         /* --- Navbar --- */
         nav {
-            padding: 20px 60px;
+            padding: 15px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -71,51 +73,55 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            background: rgba(2, 5, 10, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+            background: rgba(2, 5, 10, 0.9);
+            backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(0, 242, 255, 0.15);
         }
 
         .logo-box {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             text-decoration: none;
         }
 
-        .logo-icon {
-            width: 35px;
-            height: 35px;
-            background: var(--bg-dark);
-            border: 2px solid var(--cyan-neon);
+        .logo-img {
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 2px solid var(--cyan-neon);
             box-shadow: 0 0 15px var(--cyan-glow);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo-box:hover .logo-img {
+            transform: rotate(360deg) scale(1.1);
+            border-color: var(--magenta-neon);
+            box-shadow: 0 0 20px var(--magenta-glow);
         }
 
         .logo-text {
             font-family: 'Outfit', sans-serif;
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             color: #fff;
-            font-size: 18px;
+            font-size: 20px;
+            text-transform: uppercase;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 30px;
             align-items: center;
         }
 
         .nav-link {
             text-decoration: none;
             color: var(--text-dim);
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             transition: 0.3s;
         }
 
@@ -132,227 +138,328 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 120px 20px 60px;
+            padding: 140px 20px 80px;
             position: relative;
         }
 
         .hero-badge {
             background: rgba(0, 242, 255, 0.1);
             color: var(--cyan-neon);
-            padding: 6px 18px;
+            padding: 8px 22px;
             border-radius: 50px;
             font-size: 11px;
-            font-weight: 800;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
+            letter-spacing: 4px;
+            margin-bottom: 35px;
             border: 1px solid var(--cyan-neon);
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
-            animation: pulse 2s infinite;
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.2);
+            animation: glowPulse 3s infinite;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 10px rgba(0, 242, 255, 0.1);
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+                border-color: var(--cyan-neon);
             }
 
             50% {
-                transform: scale(1.05);
-                box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
-            }
-
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 10px rgba(0, 242, 255, 0.1);
+                box-shadow: 0 0 35px rgba(255, 0, 255, 0.4);
+                border-color: var(--magenta-neon);
             }
         }
 
         .hero h1 {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(45px, 10vw, 95px);
+            font-size: clamp(40px, 12vw, 110px);
             font-weight: 950;
-            line-height: 0.85;
-            margin-bottom: 35px;
+            line-height: 0.8;
+            margin-bottom: 40px;
             color: #fff;
-            letter-spacing: -3px;
+            letter-spacing: -4px;
             text-transform: uppercase;
+            perspective: 1000px;
         }
 
         .hero h1 span {
-            color: var(--cyan-neon);
             display: block;
-            text-shadow: 0 0 30px var(--cyan-glow);
+            background: linear-gradient(to right, var(--cyan-neon), var(--magenta-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.3));
         }
 
         .hero p {
-            font-size: clamp(16px, 2.2vw, 22px);
+            font-size: clamp(16px, 2.5vw, 24px);
             color: var(--text-dim);
-            max-width: 800px;
-            margin-bottom: 50px;
-            font-weight: 400;
+            max-width: 900px;
+            margin-bottom: 60px;
+            font-weight: 300;
         }
 
         .hero p b {
-            color: var(--magenta-neon);
+            color: var(--cyan-neon);
+            font-weight: 800;
         }
 
         .cta-container {
             display: flex;
-            gap: 25px;
+            gap: 30px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .btn {
-            padding: 20px 45px;
+            padding: 22px 50px;
             border-radius: 12px;
-            font-weight: 800;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+            letter-spacing: 2px;
+            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 15px;
-            font-size: 14px;
+            font-size: 15px;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-orbit {
             background: var(--cyan-neon);
             color: var(--bg-dark);
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
             border: 2px solid var(--cyan-neon);
+            box-shadow: 0 10px 40px rgba(0, 242, 255, 0.3);
         }
 
         .btn-orbit:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 50px var(--cyan-glow);
-            letter-spacing: 2px;
+            transform: translateY(-10px) rotateX(10deg);
+            box-shadow: 0 20px 60px var(--cyan-glow);
+            background: #fff;
+            border-color: #fff;
         }
 
-        .btn-outline {
-            background: transparent;
+        .btn-telegram {
+            background: rgba(255, 0, 255, 0.1);
             color: #fff;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid var(--magenta-neon);
         }
 
-        .btn-outline:hover {
-            border-color: var(--magenta-neon);
-            color: var(--magenta-neon);
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.2);
+        .btn-telegram:hover {
+            background: var(--magenta-neon);
+            transform: translateY(-10px) rotateX(-10deg);
+            box-shadow: 0 20px 60px var(--magenta-glow);
         }
 
-        /* --- Toolbox Grid --- */
-        .toolbox {
-            padding: 100px 60px;
-            background: linear-gradient(to bottom, transparent, rgba(0, 242, 255, 0.02), transparent);
+        /* --- Multimodel AI Section --- */
+        .ai-section {
+            padding: 120px 60px;
+            background: rgba(0, 0, 0, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-header h2 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 42px;
-            color: #fff;
-            margin-bottom: 15px;
-        }
-
-        .section-header p {
-            color: var(--text-dim);
-            font-size: 18px;
-        }
-
-        .tool-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+        .ai-container {
+            display: flex;
+            align-items: center;
+            gap: 100px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .tool-card {
-            background: var(--card-bg);
+        .ai-text {
+            flex: 1.2;
+        }
+
+        .ai-visual {
+            flex: 0.8;
+        }
+
+        .ai-card {
+            background: linear-gradient(145deg, #0a0a1a, #050505);
             padding: 40px;
-            border-radius: 20px;
+            border-radius: 25px;
+            border: 1px solid var(--cyan-neon);
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.1);
+            position: relative;
+        }
+
+        .ai-status-bar {
+            background: #000;
+            border-radius: 10px;
+            padding: 15px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #0f0;
+            margin-bottom: 20px;
+        }
+
+        .latency-badge {
+            background: var(--magenta-neon);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        /* --- Toolbox Categorized --- */
+        .toolbox {
+            padding: 140px 60px;
+            background: var(--bg-deep);
+        }
+
+        .category-group {
+            margin-bottom: 100px;
+        }
+
+        .category-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 30px;
+            color: var(--cyan-neon);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .category-title::after {
+            content: '';
+            height: 2px;
+            flex: 1;
+            background: linear-gradient(to right, var(--cyan-neon), transparent);
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 45px;
+            border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.4s;
+            transition: 0.5s;
             position: relative;
             overflow: hidden;
         }
 
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
-            background: var(--cyan-neon);
-            transition: 0.4s;
-        }
-
         .tool-card:hover {
-            background: rgba(20, 30, 50, 0.8);
-            border-color: rgba(0, 242, 255, 0.2);
-            transform: translateY(-10px);
-        }
-
-        .tool-card:hover::before {
-            height: 100%;
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--magenta-neon);
+            box-shadow: 0 20px 50px rgba(255, 0, 255, 0.1);
         }
 
         .tool-icon {
-            font-size: 35px;
-            margin-bottom: 25px;
+            font-size: 45px;
+            margin-bottom: 30px;
             display: block;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
         }
 
         .tool-card h3 {
             font-family: 'Outfit', sans-serif;
-            font-size: 22px;
+            font-size: 24px;
             color: #fff;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .tool-card p {
             color: var(--text-dim);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .tool-card .tag {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--cyan-neon);
+            padding: 4px 10px;
+            border: 1px solid var(--cyan-neon);
+            border-radius: 4px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 100px 60px;
+            background: #000;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 25px;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 15px;
             font-size: 14px;
-            line-height: 1.6;
+            transition: 0.3s;
         }
 
-        .tool-card .highlight {
-            color: var(--magenta-neon);
-            font-weight: bold;
+        .footer-col a:hover {
+            color: var(--cyan-neon);
         }
 
-        /* --- Live Status Bar --- */
+        .copyright {
+            color: var(--text-dim);
+            font-size: 11px;
+            letter-spacing: 6px;
+            opacity: 0.5;
+            text-transform: uppercase;
+        }
+
+        /* --- Live Status --- */
         .live-status {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: rgba(2, 5, 10, 0.9);
-            padding: 12px 20px;
+            bottom: 40px;
+            left: 40px;
+            background: rgba(2, 5, 10, 0.95);
+            padding: 15px 25px;
             border-radius: 50px;
             border: 1px solid var(--cyan-neon);
             display: flex;
             align-items: center;
-            gap: 12px;
-            z-index: 1000;
+            gap: 15px;
+            z-index: 2000;
             box-shadow: 0 0 30px var(--cyan-glow);
+            backdrop-filter: blur(10px);
         }
 
-        .dot {
-            width: 10px;
-            height: 10px;
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
             background: #00ff00;
             border-radius: 50%;
-            box-shadow: 0 0 10px #00ff00;
-            animation: blink 1.5s infinite;
+            box-shadow: 0 0 15px #00ff00;
+            animation: blink 2s infinite;
         }
 
         @keyframes blink {
@@ -360,87 +467,24 @@
             0%,
             100% {
                 opacity: 1;
+                transform: scale(1);
             }
 
             50% {
-                opacity: 0.3;
+                opacity: 0.4;
+                transform: scale(0.8);
             }
         }
 
-        /* --- Innovation Section --- */
-        .innovation {
-            padding: 100px 60px;
-            display: flex;
-            align-items: center;
-            gap: 80px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .innovation-text {
-            flex: 1;
-        }
-
-        .innovation-visual {
-            flex: 1;
-            position: relative;
-            background: var(--bg-deep);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid var(--magenta-neon);
-            box-shadow: 0 0 50px rgba(255, 0, 255, 0.1);
-        }
-
-        .code-display {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--cyan-neon);
-            line-height: 1.5;
-        }
-
-        /* --- Footer --- */
-        footer {
-            padding: 80px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer-logo {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 900;
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: var(--text-dim);
-        }
-
-        .copyright {
-            font-size: 11px;
-            letter-spacing: 5px;
-            color: var(--text-dim);
-            opacity: 0.6;
-        }
-
-        /* --- Mobile Responsive --- */
-        @media (max-width: 768px) {
-            nav {
-                padding: 20px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 50px;
-            }
-
-            .tool-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .innovation {
+        @media (max-width: 1024px) {
+            .ai-container {
                 flex-direction: column;
                 text-align: center;
+                gap: 60px;
+            }
+
+            nav {
+                padding: 15px 30px;
             }
         }
     </style>
@@ -450,110 +494,215 @@
 
     <nav>
         <a href="#" class="logo-box">
-            <div class="logo-icon">👁️</div>
+            <img src="img/orbit_poker_chip_v2.png" alt="Orbit Logo" class="logo-img">
             <div class="logo-text">ORBIT ALPHA</div>
         </a>
         <div class="nav-links">
-            <a href="#tools" class="nav-link">Toolkit</a>
-            <a href="#vision" class="nav-link">Visión</a>
+            <a href="#vision" class="nav-link">Visión IA</a>
+            <a href="#toolbox" class="nav-link">Herramientas</a>
             <a href="https://t.me/OrbitAllInPoker" target="_blank" class="nav-link"
-                style="color: var(--cyan-neon);">Telegram</a>
-            <a href="colaboracion.html" class="btn btn-orbit" style="padding: 10px 25px; font-size: 12px;">Únete</a>
+                style="color: var(--magenta-neon);">📢 Noticias</a>
+            <a href="https://t.me/OrbitAlphaComunidad" target="_blank" class="nav-link"
+                style="color: var(--cyan-neon);">💬 Comunidad</a>
+            <a href="colaboracion.html" class="btn btn-orbit" style="padding: 12px 30px; font-size: 13px;">Reclamar
+                Acceso</a>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-badge">Alpha Access Launch // 2026</div>
-        <h1>ORBIT ALPHA 1.0<br><span>EL CEREBRO IA</span></h1>
-        <p>Gestiona tu bankroll, analiza rangos y domina el streaming con asistencia de <b>Inteligencia Artificial</b>
-            en tiempo real. La herramienta definitiva para el Poker Streamer profesional.</p>
+        <div class="hero-badge">Alpha Project 1.0 // Deployment Ready</div>
+        <h1>ORBIT ALPHA 1.0<br><span>EL CEREBRO TÁCTICO</span></h1>
+        <p>Domina las mesas y el streaming con la asistencia de <b>Inteligencia Artificial Multimodelo</b>. El primer
+            ecosistema 360° que piensa, escucha y actúa con el Poker Pro.</p>
 
         <div class="cta-container">
-            <a href="colaboracion.html" class="btn btn-orbit">🚀 RECLAMAR ACCESO ALPHA</a>
-            <a href="https://t.me/OrbitAllInPoker" target="_blank" class="btn btn-outline">📡 UNIRSE AL TELEGRAM</a>
+            <a href="colaboracion.html" class="btn btn-orbit">🚀 INICIAR SOLICITUD ALPHA</a>
+            <a href="https://t.me/OrbitAllInPoker" target="_blank" class="btn btn-telegram">📡 CANAL DE COMANDANCIA</a>
         </div>
     </section>
 
-    <section class="toolbox" id="tools">
+    <section class="ai-section" id="vision">
+        <div class="ai-container">
+            <div class="ai-text">
+                <div class="hero-badge"
+                    style="border-color: var(--magenta-neon); color: var(--magenta-neon); background: rgba(255, 0, 255, 0.1);">
+                    Voz Multimodelo v.2026</div>
+                <h2
+                    style="font-family: 'Outfit', sans-serif; font-size: clamp(30px, 5vw, 50px); color: #fff; margin-bottom: 30px; line-height: 1.1;">
+                    UNA VOZ, TRES GIGANTES.</h2>
+                <p style="font-size: 19px; color: var(--text-dim); margin-bottom: 30px;">Orbit no depende de un solo
+                    cerebro. Nuestra arquitectura híbrida alterna entre <b>Groq (Latencia Ultra-Baja)</b>, <b>OpenAI
+                        (Razonamiento Complejo)</b> y <b>Gemini (Análisis Global)</b> para que tu voz sea ley en
+                    milisegundos.</p>
+                <ul style="color: var(--cyan-neon); list-style: none; font-weight: 700; font-size: 16px;">
+                    <li style="margin-bottom: 15px;">⚡ Inferencia en Tiempo Real < 50ms</li>
+                    <li style="margin-bottom: 15px;">🔊 Reconocimiento Fonético Poker-Specific</li>
+                    <li style="margin-bottom: 15px;">🛡️ Modo Offline de Emergencia</li>
+                </ul>
+            </div>
+            <div class="ai-visual">
+                <div class="ai-card">
+                    <div class="ai-status-bar">
+                        > AGENT_ORBIT: Processing...<br>
+                        > SOURCE: Groq LPU™ Engine<br>
+                        > Latency: <span class="latency-badge">24ms</span><br>
+                        > Deciphering: "Orbit, pon un rebuy en Stars"
+                    </div>
+                    <div style="height: 100px; display: flex; align-items: flex-end; gap: 5px;">
+                        <div
+                            style="flex: 1; background: var(--cyan-neon); height: 80%; animation: wave 1s infinite 0.1s;">
+                        </div>
+                        <div
+                            style="flex: 1; background: var(--magenta-neon); height: 40%; animation: wave 1s infinite 0.2s;">
+                        </div>
+                        <div
+                            style="flex: 1; background: var(--cyan-neon); height: 90%; animation: wave 1s infinite 0.3s;">
+                        </div>
+                        <div
+                            style="flex: 1; background: var(--magenta-neon); height: 60%; animation: wave 1s infinite 0.4s;">
+                        </div>
+                        <div
+                            style="flex: 1; background: var(--cyan-neon); height: 30%; animation: wave 1s infinite 0.5s;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="toolbox" id="#toolbox">
         <div class="section-header">
-            <h2>80+ HERRAMIENTAS INTEGRADAS</h2>
-            <p>Todo el control de tu carrera en una sola interfaz táctica.</p>
+            <h2 style="font-family: 'Outfit', sans-serif; font-size: 45px; margin-bottom: 20px;">ARSENAL DE ALTO
+                RENDIMIENTO</h2>
+            <p style="color: var(--text-dim); font-size: 20px;">Más de 80 herramientas categorizadas para el dominio
+                absoluto.</p>
         </div>
 
-        <div class="tool-grid">
-            <div class="tool-card">
-                <span class="tool-icon">🧠</span>
-                <h3>Calculadora de Equidad IA</h3>
-                <p>Cálculo de rangos y equity instantáneo procesado por el núcleo <span class="highlight">Antigravity
-                        AI</span>.</p>
-            </div>
-            <div class="tool-card">
-                <span class="tool-icon">🎙️</span>
-                <h3>Comandos de Voz </h3>
-                <p>Control manos libres mediante <span class="highlight">Gemini / OpenAI</span>. Ejecuta acciones sin
-                    mover el ratón.</p>
-            </div>
-            <div class="tool-card">
-                <span class="tool-icon">📊</span>
-                <h3>Sesiones Automatizadas</h3>
-                <p>Tracker de banca inteligente que detecta varianza y ajusta tu <span class="highlight">Stop
-                        Loss</span> dinámico.</p>
-            </div>
-            <div class="tool-card">
-                <span class="tool-icon">👾</span>
-                <h3>HUD para Streamers</h3>
-                <p>Overlay dinámico para Twitch/YouTube que muestra tu progreso con estética <span
-                        class="highlight">Cyberpunk</span>.</p>
-            </div>
-            <div class="tool-card">
-                <span class="tool-icon">🔐</span>
-                <h3>Bóveda de Seguridad</h3>
-                <p>Encriptación de grado militar. Tus estrategias y datos financieros nunca salen de tu <span
-                        class="highlight">Entorno Local</span>.</p>
-            </div>
-            <div class="tool-card">
-                <span class="tool-icon">🛰️</span>
-                <h3>Multi-Room Sync</h3>
-                <p>Sincronización total con PokerStars, GGPoker y Winamax desde una <span class="highlight">Única
-                        Central</span>.</p>
+        <div class="category-group">
+            <div class="category-title">🧠 ANÁLISIS DE RANGOS & IA</div>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <span class="tool-icon">👁️</span>
+                    <h3>Equity Calculator IA</h3>
+                    <p>Cálculo de equidad post-flop y rangos dinámicos asistidos por modelos de lenguaje pro-poker.</p>
+                    <span class="tag">Next-gen AI</span>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">📚</span>
+                    <h3>Logic Analyzer</h3>
+                    <p>Herramienta que audita tu toma de decisiones y analiza las desviaciones en tu línea de
+                        pensamiento.</p>
+                    <span class="tag">Strategic Audit</span>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">📜</span>
+                    <h3>Vocab Poker-Sync</h3>
+                    <p>Diccionario fonético adaptado a la jerga del póker (Stakes, Reraises, Flop textures) para mayor
+                        precisión.</p>
+                    <span class="tag">Voice Engine</span>
+                </div>
             </div>
         </div>
-    </section>
 
-    <section class="innovation" id="vision">
-        <div class="innovation-text">
-            <div class="hero-badge"
-                style="border-color: var(--magenta-neon); color: var(--magenta-neon); background: rgba(255, 0, 255, 0.1);">
-                Protocolo de Vanguardia</div>
-            <h2 style="font-size: 40px; margin-bottom: 25px;">MÁS QUE UN GESTOR,<br>UN COPILOTO.</h2>
-            <p style="color: var(--text-dim); margin-bottom: 30px;">Orbit no solo registra tus números. Aprende de tu
-                juego, te avisa de fatiga mediante su semáforo de voz e integra modelos de lenguaje para que interactúes
-                con tu software como nunca antes.</p>
-            <a href="colaboracion.html" class="nav-link" style="color: var(--magenta-neon); font-size: 16px;">Ver hoja
-                de ruta completa →</a>
+        <div class="category-group">
+            <div class="category-title">📊 GESTIÓN DE BANCA Y FINANZAS</div>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <span class="tool-icon">🏛️</span>
+                    <h3>Bóveda de Banca Maestra</h3>
+                    <p>Consolidación total de saldos de todas tus salas en un solo balance centralizado y protegido.</p>
+                    <span class="tag">Security Core</span>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">⚖️</span>
+                    <h3>Stop-Loss Dinámico</h3>
+                    <p>Algoritmo de protección que detecta rachas de varianza y te sugiere (o bloquea) la sesión por
+                        salud de banca.</p>
+                    <span class="tag">Shield System</span>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🌍</span>
+                    <h3>Multi-Room Sync</h3>
+                    <p>Sincronización nativa con Winamax, PokerStars, GG, 888 y las principales salas Cripto globales.
+                    </p>
+                    <span class="tag">Native Bridge</span>
+                </div>
+            </div>
         </div>
-        <div class="innovation-visual">
-            <div class="code-display">
-                <span style="color: #666;">// Inicializando núcleo Orbit...</span><br>
-                > neural_engine.load_weights('pro_poker_2026')<br>
-                > voice_system: <span style="color: #0f0;">ACTIVE</span><br>
-                > bankroll_shield: <span style="color: #0f0;">ARMED</span><br>
-                > groq_inference_time: <span style="color: #ff00ff;">24ms</span><br>
-                <br>
-                <span style="color: #fff;">[SISTEMA LISTO PARA ASISTENCIA]</span>
+
+        <div class="category-group">
+            <div class="category-title">👾 AUTOMATIZACIÓN DE STREAM</div>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <span class="tool-icon">🎭</span>
+                    <h3>HUD Cyberpunk Premium</h3>
+                    <p>Overlays dinámicos para Twitch diseñados para cautivar a la audiencia con datos en tiempo real.
+                    </p>
+                    <span class="tag">Graphics v2.0</span>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🚦</span>
+                    <h3>Semáforo de Voz</h3>
+                    <p>Indicador visual de estado de IA que permite a tus viewers saber cuándo estás operando manos
+                        libres.</p>
+                    <span class="tag">Visual Comms</span>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🕰️</span>
+                    <h3>Chronos Journal</h3>
+                    <p>Diario de sesiones automatizado que registra notas por voz durante el fragor de la batalla.</p>
+                    <span class="tag">Journaling IA</span>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-logo">ORBIT SYSTEMS</div>
-        <p class="copyright">AD ASTRA PER ASPERA // VERSION ALPHA 1.0</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>PROYECTO ORBIT</h4>
+                <p style="font-size: 13px; color: var(--text-dim);">La evolución del jugador de póker hacia el
+                    arquitecto tecnológico.</p>
+                <div style="margin-top: 30px; display: flex; gap: 20px;">
+                    <a href="https://t.me/OrbitAllInPoker" style="font-size: 22px;">📢</a>
+                    <a href="https://t.me/OrbitAlphaComunidad" style="font-size: 22px;">💬</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>NAVEGACIÓN</h4>
+                <a href="#vision">Misión IA</a>
+                <a href="#toolbox">Ecosistema</a>
+                <a href="colaboracion.html">Registro Alpha</a>
+            </div>
+            <div class="footer-col">
+                <h4>LEGAL / SEGURIDAD</h4>
+                <a href="#">Privacidad Local</a>
+                <a href="#">Security Protocol</a>
+                <a href="#">© 2026 Orbit Systems</a>
+            </div>
+        </div>
+        <p class="copyright">AD ASTRA PER ASPERA // VERSION ALPHA 1.0.1</p>
     </footer>
 
     <div class="live-status">
-        <div class="dot"></div>
-        <span style="font-size: 12px; font-weight: 700; letter-spacing: 1px;">SYSTEM ONLINE</span>
+        <div class="pulse-dot"></div>
+        <span style="font-size: 12px; font-weight: 900; letter-spacing: 2px; color: var(--cyan-neon);">PROTOCOL
+            ONLINE</span>
     </div>
+
+    <style>
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            50% {
+                transform: scaleY(1.5);
+            }
+        }
+    </style>
 
 </body>
 
