@@ -1156,10 +1156,10 @@
             <div class="category-title">🧠 ANÁLISIS DE RANGOS & IA</div>
             <div class="tool-grid">
                 <div class="tool-card">
-                    <span class="tool-icon">👁️</span>
-                    <h3>Equity Calculator IA</h3>
-                    <p>Cálculo de equidad post-flop y rangos dinámicos asistidos por modelos de lenguaje pro-poker.</p>
-                    <span class="tag">Next-gen AI</span>
+                    <span class="tool-icon">🧠</span>
+                    <h3>Interfaz Neural</h3>
+                    <p>No toques el ratón. Mantén el foco en las cartas. La IA te susurra tu balance.</p>
+                    <span class="tag">Voice Engine</span>
                 </div>
                 <div class="tool-card">
                     <span class="tool-icon">📚</span>
@@ -1183,16 +1183,15 @@
             <div class="tool-grid">
                 <div class="tool-card">
                     <span class="tool-icon">🏛️</span>
-                    <h3>Bóveda de Banca Maestra</h3>
-                    <p>Consolidación total de saldos de todas tus salas en un solo balance centralizado y protegido.</p>
+                    <h3>Bóveda Maestra</h3>
+                    <p>Tu única fuente de verdad. El Banco Central donde se teletransportan tus ganancias.</p>
                     <span class="tag">Security Core</span>
                 </div>
                 <div class="tool-card">
                     <span class="tool-icon">⚖️</span>
-                    <h3>Stop-Loss Dinámico</h3>
-                    <p>Algoritmo de protección que detecta rachas de varianza y te sugiere (o bloquea) la sesión por
-                        salud de banca.</p>
-                    <span class="tag">Shield System</span>
+                    <h3>Session Delta</h3>
+                    <p>Métrica viva que calcula tu rendimiento en tiempo real frente a la varianza esperada.</p>
+                    <span class="tag">Live Metric</span>
                 </div>
                 <div class="tool-card">
                     <span class="tool-icon">🌍</span>
@@ -1209,9 +1208,8 @@
             <div class="tool-grid">
                 <div class="tool-card">
                     <span class="tool-icon">🎭</span>
-                    <h3>HUD Cyberpunk Premium</h3>
-                    <p>Overlays dinámicos para Twitch diseñados para cautivar a la audiencia con datos en tiempo real.
-                    </p>
+                    <h3>HUD Táctico</h3>
+                    <p>Cada píxel está diseñado para el stream. Limpio, potente y futurista.</p>
                     <span class="tag">Graphics v2.0</span>
                 </div>
                 <div class="tool-card">
@@ -1321,16 +1319,35 @@
                 progress.classList.add('scanning');
             }
 
-            // 2. Start Audio System (User Gesture)
-            toggleMissionMusic();
+            // 2. Start Audio System (User Gesture) - PHASE 1: TENSION
+            initAudioSync();
+            // Ensure context is running
+            if (audioCtx.state === 'suspended') audioCtx.resume();
 
-            // 3. Wait for Scan (4s) then Fade Out
+            // Play Tension Layer
+            clock.play();
+            heartbeat.play();
+
+            // Update UI State
+            audioControl.classList.add('active');
+            audioText.innerText = "SOUND: ON";
+            audioText.style.color = "var(--cyan-neon)";
+
+            // 3. Wait for Scan (4s) then Fade Out & Start Mission
             setTimeout(() => {
                 if (splash) {
                     splash.classList.add('fade-out');
                     setTimeout(() => splash.remove(), 1500);
+
+                    // PHASE 2: MISSION (Main Track)
+                    audio.play();
+                    // Optional: Fade out clock/heartbeat? For now, let's keep them as layers or stop them.
+                    // The user wants "Clock (Start), Heartbeat (Scan), Mission (Final)".
+                    // Usually Mission covers everything. Let's stop the others to be clean.
+                    clock.pause();
+                    heartbeat.pause();
                 }
-            }, 4500); // 4s scan + buffer
+            }, 4000); // 4s scan exact
         }
 
         // Official Soundtrack Engine (Sync V2)
@@ -1363,12 +1380,20 @@
             source.connect(analyser);
             analyser.connect(audioCtx.destination);
 
-            // Connect heartbeat (optional: separate analyzer for precision, but let's optimize with one for now or just volume tracking)
+            // Connect heartbeat to destination (direct)
+            // Note: We want to visualize heartbeat too if it's playing alone? 
+            // For now, let's just route them to speakers. 
+            // If we want the logo to pulse to heartbeat, we need to connect logic.
+            // But main visualization is hooked to 'audio' (Mission).
+            // Let's hook heartbeat to analyzer too for the intro effect!
             const hSource = audioCtx.createMediaElementSource(heartbeat);
-            hSource.connect(audioCtx.destination); // Direct to speakers
+            const hGain = audioCtx.createGain();
+            hSource.connect(hGain);
+            hGain.connect(analyser); // Heartbeat goes to analyzer
+            hGain.connect(audioCtx.destination); // And to speakers
 
             const cSource = audioCtx.createMediaElementSource(clock);
-            cSource.connect(audioCtx.destination);
+            cSource.connect(audioCtx.destination); // Clock just sounds
 
             isSyncing = true;
             renderSync();
@@ -1405,13 +1430,13 @@
         function toggleMissionMusic() {
             initAudioSync();
 
-            if (audio.paused) {
-                // Audio Context Resume for user gesture compliance
+            if (audio.paused && clock.paused && heartbeat.paused) {
+                // Manual toggle (Reviewer mode): Play everything
                 if (audioCtx.state === 'suspended') audioCtx.resume();
 
                 audio.play();
-                heartbeat.play();
-                clock.play();
+                // heartbeat.play(); // Optional in manual mode
+                // clock.play();
 
                 audioControl.classList.add('active');
                 audioText.innerText = "SOUND: ON";
@@ -1427,7 +1452,6 @@
                 document.body.classList.remove('vibrating');
             }
         }
-
         // Clock Sync Logic: Accurate flash every 1s
         clock.addEventListener('play', () => {
             const flashInterval = setInterval(() => {
