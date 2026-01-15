@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit Access Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 800px;
+            /* Adjust as needed */
+            height: 450px;
+            background-color: #050a10;
+            background-image:
+                linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Share Tech Mono', monospace;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .panel-card {
+            width: 90%;
+            height: 80%;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            background: rgba(0, 15, 25, 0.8);
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Decoration Lines */
+        .panel-card::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid #00f2ff;
+            border-left: 2px solid #00f2ff;
+        }
+
+        .panel-card::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid #00f2ff;
+            border-right: 2px solid #00f2ff;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00f2ff;
+            font-size: 28px;
+            margin: 0 0 20px 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
+
+        #qrcode {
+            background: #fff;
+            padding: 10px;
+            border: 2px solid #00f2ff;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+        }
+
+        .instruction {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #ccc;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .operator {
+            position: absolute;
+            bottom: 20px;
+            font-size: 12px;
+            color: #00f2ff;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-small {
+            width: 30px;
+            height: 30px;
+            filter: drop-shadow(0 0 15px #00f2ff);
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="panel-card">
+        <h1>PROTOCOL ACCESS | ALPHA UNIT</h1>
+
+        <div id="qrcode"></div>
+
+        <div class="instruction">REACCIONA PARA OBTENER ACCESO</div>
+
+        <div class="operator">
+            <img src="../../img/orbit_poker_chip_v2.png" class="logo-small">
+            OPERADOR JEFE: @SRTORRESPOKER
+        </div>
+    </div>
+
+    <script>
+        // Generate QR for local or hosted collaboration page
+        // Using the public URL as primary
+        const targetUrl = "https://srtorresredes.github.io/ORBIT-ALL-IN-ONE-WEB/colaboracion.html";
+
+        new QRCode(document.getElementById("qrcode"), {
+            text: targetUrl,
+            width: 150,
+            height: 150,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
+
+</body>
+
+</html>
