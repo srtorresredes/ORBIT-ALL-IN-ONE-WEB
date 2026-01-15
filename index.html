@@ -778,7 +778,9 @@
             width: 0;
             background: var(--cyan-neon);
             box-shadow: 0 0 15px var(--cyan-neon);
-            animation: progress-load-landing 8s forwards cubic-bezier(0.4, 0, 0.2, 1);
+            /* Animation triggered via JS */
+            width: 0;
+
         }
 
         @keyframes progress-load-landing {
@@ -801,6 +803,33 @@
             100% {
                 width: 100%;
             }
+        }
+
+        .splash-progress.scanning {
+            animation: progress-load-landing 4s forwards cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #init-scanner-btn {
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.1), rgba(0, 0, 0, 0.8));
+            border: 1px solid var(--cyan-neon);
+            color: var(--cyan-neon);
+            padding: 12px 25px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+        }
+
+        #init-scanner-btn:hover {
+            background: rgba(0, 242, 255, 0.2);
+            box-shadow: 0 0 30px var(--cyan-glow);
+            transform: scale(1.02);
+            text-shadow: 0 0 8px var(--cyan-neon);
         }
 
         .orbit-watermark {
@@ -961,6 +990,11 @@
             <div class="splash-text-box">
                 <div class="splash-title">ORBIT ALPHA</div>
                 <div class="splash-subtitle">Iniciando Protocolo de Vigilancia...</div>
+
+                <button id="init-scanner-btn" class="element-3d-lift" onclick="startSystemScanner()">
+                    🔥 INICIAR SOLICITUD ALPHA
+                </button>
+
                 <div class="splash-loader-bar">
                     <div class="splash-progress"></div>
                 </div>
@@ -1272,16 +1306,34 @@
     </style>
 
     <script>
-        // Splash Screen Fade Out
-        window.addEventListener('load', () => {
+        // Splash Screen Logic (Manual Trigger)
+        // window.addEventListener('load', () => { /* Auto-fade removed for manual start */ });
+
+        function startSystemScanner() {
+            const btn = document.getElementById('init-scanner-btn');
+            const progress = document.querySelector('.splash-progress');
             const splash = document.getElementById('orbit-splash');
-            if (splash) {
-                setTimeout(() => {
+
+            // 1. Activate UI
+            if (btn) btn.style.display = 'none'; // Hide button
+            if (progress) {
+                progress.style.width = '0%'; // Reset
+                // Force reflow
+                void progress.offsetWidth;
+                progress.classList.add('scanning');
+            }
+
+            // 2. Start Audio System (User Gesture)
+            toggleMissionMusic();
+
+            // 3. Wait for Scan (4s) then Fade Out
+            setTimeout(() => {
+                if (splash) {
                     splash.classList.add('fade-out');
                     setTimeout(() => splash.remove(), 1500);
-                }, 8500);
-            }
-        });
+                }
+            }, 4500); // 4s scan + buffer
+        }
 
         // Official Soundtrack Engine (Sync V2)
         const audio = document.getElementById('official-soundtrack');
