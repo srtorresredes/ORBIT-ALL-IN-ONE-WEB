@@ -1,0 +1,120 @@
+# ORBIT SYSTEMS - GITIGNORE
+# Protección de credenciales y archivos sensibles
+
+# ==========================================
+# CONFIGURACIÓN PRIVADA (API KEYS)
+# ==========================================
+config.js
+**/config.js
+
+# ==========================================
+# NODE MODULES & DEPENDENCIES
+# ==========================================
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# ==========================================
+# ENTORNOS VIRTUALES & BUILD
+# ==========================================
+.env
+.env.local
+.env.development
+.env.production
+dist/
+build/
+
+# ==========================================
+# FIREBASE & CLOUD SERVICES
+# ==========================================
+.firebase/
+.firebaserc
+firebase-debug.log
+firestore-debug.log
+
+# ==========================================
+# SISTEMA OPERATIVO
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# ==========================================
+# EDITORES & IDEs
+# ==========================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains (WebStorm, PyCharm, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ==========================================
+# LOGS & TEMPORALES
+# ==========================================
+*.log
+logs/
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.cache
+
+# ==========================================
+# DATOS SENSIBLES DEL PROYECTO
+# ==========================================
+# Backups de base de datos local
+*.db
+*.sqlite
+*.sqlite3
+
+# Archivos de sesión
+sessions/
+*.session
+
+# Datos de usuario
+user-data/
+*.userdata
+
+# ==========================================
+# TESTING & COVERAGE
+# ==========================================
+coverage/
+.nyc_output/
+*.lcov
+
+# ==========================================
+# CARPETAS DE DESARROLLO Y PRUEBAS
+# ==========================================
+_DEV_TRASH_OR_BACKUP/
+cuarentena/
+hospital/
+copia_seguridad/
+copia_seguridad_v2/
+test-output/
+
+# ==========================================
+# OTROS
+# ==========================================
+.gemini/
+ANTIGRAVITY/audit_pulse.json
