@@ -187,6 +187,7 @@
             display: block;
             background: linear-gradient(to right, var(--cyan-neon), var(--magenta-neon));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.3));
         }
@@ -487,6 +488,92 @@
                 padding: 15px 30px;
             }
         }
+
+        /* --- Philosophy & Glitch Section --- */
+        .philosophy-section {
+            padding: 140px 60px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 0, 255, 0.03), transparent);
+            position: relative;
+        }
+
+        .glitch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .glitch-card {
+            background: rgba(10, 15, 25, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+
+        .glitch-card:hover {
+            border-color: var(--cyan-neon);
+            transform: scale(1.02);
+            background: rgba(10, 15, 25, 0.9);
+        }
+
+        .glitch-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--cyan-neon);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .glitch-card p {
+            font-size: 15px;
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        .glitch-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--cyan-neon);
+            transform: translateX(-100%);
+            transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .glitch-card:hover .glitch-line {
+            transform: translateX(0);
+        }
+
+        .copilot-banner {
+            background: rgba(0, 242, 255, 0.03);
+            border: 1px dashed var(--cyan-neon);
+            padding: 60px;
+            border-radius: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .philosophy-section {
+                padding: 80px 20px;
+            }
+
+            .ai-section {
+                padding: 80px 20px;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+        }
     </style>
 </head>
 
@@ -499,6 +586,7 @@
         </a>
         <div class="nav-links">
             <a href="#vision" class="nav-link">Visión IA</a>
+            <a href="#filosofia" class="nav-link">Filosofía</a>
             <a href="#toolbox" class="nav-link">Herramientas</a>
             <a href="https://t.me/OrbitAllInPoker" target="_blank" class="nav-link"
                 style="color: var(--magenta-neon);">📢 Noticias</a>
@@ -512,8 +600,8 @@
     <section class="hero">
         <div class="hero-badge">Alpha Project 1.0 // Deployment Ready</div>
         <h1>ORBIT ALPHA 1.0<br><span>EL CEREBRO TÁCTICO</span></h1>
-        <p>Domina las mesas y el streaming con la asistencia de <b>Inteligencia Artificial Multimodelo</b>. El primer
-            ecosistema 360° que piensa, escucha y actúa con el Poker Pro.</p>
+        <p>Domina las mesas y el streaming con la asistencia de <b>Inteligencia Artificial Multimodelo</b>. Más que una
+            herramienta, un <b>Copiloto Activo e Inteligente</b> que unifica tu carrera profesional.</p>
 
         <div class="cta-container">
             <a href="colaboracion.html" class="btn btn-orbit">🚀 INICIAR SOLICITUD ALPHA</a>
@@ -566,6 +654,54 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="philosophy-section" id="filosofia">
+        <div class="section-header" style="text-align: center; margin-bottom: 80px;">
+            <div class="hero-badge">Manifiesto Orbit // La Verdad</div>
+            <h2
+                style="font-family: 'Outfit', sans-serif; font-size: clamp(35px, 6vw, 60px); color: #fff; margin-bottom: 25px;">
+                EL PÓKER MERECE UN <span style="color: var(--cyan-neon);">SISTEMA OPERATIVO</span></h2>
+            <p style="font-size: 18px; color: var(--text-dim); max-width: 800px; margin: 0 auto;">El jugador actual se
+                enfrenta a una fragmentación caótica. ORBIT nace para eliminar el ruido y devolverte el control total.
+            </p>
+        </div>
+
+        <div class="glitch-grid">
+            <div class="glitch-card">
+                <div class="glitch-title" data-text="01. CAOS OPERATIVO">01. CAOS OPERATIVO</div>
+                <p>El multitabling de 12+ mesas genera una fatiga cognitiva extrema. ORBIT reduce la carga mental para
+                    que te mantengas en "La Zona" (Modo Zen) sin distracciones.</p>
+                <div class="glitch-line"></div>
+            </div>
+            <div class="glitch-card">
+                <div class="glitch-title" data-text="02. GESTIÓN CRÍTICA">02. GESTIÓN CRÍTICA</div>
+                <p>La varianza es el enemigo silencioso. Automatizamos tu Bankroll Management para sellar los "Agujeros
+                    Negros" financieros que destruyen carreras.</p>
+                <div class="glitch-line"></div>
+            </div>
+            <div class="glitch-card">
+                <div class="glitch-title" data-text="03. CARGA DEL STREAMER">03. CARGA DEL STREAMER</div>
+                <p>Jugar tu A-Game mientras entretienes a una audiencia es una carga doble. Orbit automatiza la
+                    producción para que tú solo te preocupes de ganar.</p>
+                <div class="glitch-line"></div>
+            </div>
+        </div>
+
+        <div style="margin-top: 100px; text-align: center;">
+            <div class="copilot-banner">
+                <span class="orbit-logo" style="margin-bottom: 10px;">Executive Summary</span>
+                <h3 style="font-size: clamp(24px, 4vw, 42px); font-weight: 900; color: #fff; letter-spacing: -1px;">
+                    ORBIT ES UN <span
+                        style="color: var(--magenta-neon); text-shadow: 0 0 20px var(--magenta-glow);">COPILOTO ACTIVO E
+                        INTELIGENTE</span>
+                </h3>
+                <p
+                    style="margin-top: 20px; color: var(--text-dim); font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">
+                    Toma mejores decisiones. Ofrece un mejor espectáculo.
+                </p>
             </div>
         </div>
     </section>
