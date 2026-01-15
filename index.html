@@ -8,6 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@500;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="orbit_icon.ico">
 
     <!-- ORBIT CONFIG: API Keys Loader -->
     <script src="config.js"></script>
@@ -96,8 +97,9 @@
 
         .logo-box:hover .logo-img {
             transform: rotate(360deg) scale(1.1);
-            border-color: var(--magenta-neon);
-            box-shadow: 0 0 20px var(--magenta-glow);
+            border-color: var(--cyan-neon);
+            box-shadow: 0 0 30px var(--cyan-neon), 0 0 60px var(--cyan-glow);
+            filter: brightness(1.2);
         }
 
         .logo-text {
@@ -641,10 +643,335 @@
                 padding: 15px 20px;
             }
         }
+
+        /* --- BRANDING: SPLASH & WATERMARK --- */
+        #orbit-splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, #0a1220 0%, #02050a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: all;
+        }
+
+        #orbit-splash.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .splash-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .splash-logo-container {
+            position: relative;
+            width: min(60vh, 80vw);
+            height: min(60vh, 80vw);
+        }
+
+        .splash-logo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid var(--cyan-neon);
+            box-shadow: 0 0 30px var(--cyan-glow);
+            animation: splash-pulse-landing 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .splash-scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--cyan-neon);
+            box-shadow: 0 0 15px var(--cyan-neon);
+            animation: scan-move 2.5s infinite linear;
+            opacity: 0.7;
+        }
+
+        @keyframes splash-pulse-landing {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 30px var(--cyan-glow);
+            }
+
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 0 60px var(--cyan-neon);
+            }
+        }
+
+        @keyframes scan-move {
+            0% {
+                top: 0;
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        .splash-text-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .splash-title {
+            font-family: 'Outfit', sans-serif;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 950;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+            margin-left: 12px;
+        }
+
+        .splash-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--cyan-neon);
+            font-size: 11px;
+            letter-spacing: 5px;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        .splash-loader-bar {
+            width: 280px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            margin-top: 10px;
+        }
+
+        .splash-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background: var(--cyan-neon);
+            box-shadow: 0 0 15px var(--cyan-neon);
+            animation: progress-load-landing 8s forwards cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes progress-load-landing {
+            0% {
+                width: 0;
+            }
+
+            20% {
+                width: 30%;
+            }
+
+            50% {
+                width: 45%;
+            }
+
+            80% {
+                width: 95%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        .orbit-watermark {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 80px;
+            height: 80px;
+            opacity: 0.15;
+            z-index: 100;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .orbit-watermark img {
+            width: 100%;
+            height: 100%;
+            filter: grayscale(1) brightness(2);
+            mix-blend-mode: overlay;
+        }
+
+        /* --- Audio Control UI --- */
+        .audio-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-left: 15px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .audio-toggle:hover {
+            filter: brightness(1.2);
+        }
+
+        .audio-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 12px;
+        }
+
+        .audio-bars .bar {
+            width: 2px;
+            background: var(--text-dim);
+            height: 4px;
+            transition: height 0.2s ease;
+        }
+
+        .audio-toggle.active .bar {
+            background: var(--cyan-neon);
+            animation: audio-bounce 0.8s infinite ease-in-out;
+        }
+
+        .audio-toggle.active .bar:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .audio-toggle.active .bar:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes audio-bounce {
+
+            0%,
+            100% {
+                height: 4px;
+            }
+
+            50% {
+                height: 12px;
+            }
+        }
+
+        /* --- Advanced Sync Effects --- */
+        .system-shake {
+            animation: shake 0.15s cubic-bezier(.36, .07, .19, .97) both;
+        }
+
+        @keyframes shake {
+
+            10%,
+            90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(2px, 0, 0);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-4px, 0, 0);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(4px, 0, 0);
+            }
+        }
+
+        .clock-flash {
+            animation: flash-border 0.2s ease-out;
+        }
+
+        @keyframes flash-border {
+            0% {
+                border-color: var(--cyan-neon);
+                box-shadow: 0 0 40px var(--cyan-neon);
+            }
+
+            100% {
+                border-color: rgba(0, 242, 255, 0.4);
+                box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            }
+        }
+
+        body.vibrating {
+            animation: system-vibration 0.1s infinite;
+        }
+
+        @keyframes system-vibration {
+            0% {
+                transform: translate(1px, 1px) rotate(0deg);
+            }
+
+            10% {
+                transform: translate(-1px, -2px) rotate(-0.5deg);
+            }
+
+            20% {
+                transform: translate(-3px, 0px) rotate(0.5deg);
+            }
+
+            30% {
+                transform: translate(3px, 2px) rotate(0deg);
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(0.5deg);
+            }
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- SPLASH SCREEN: INTRO ORBIT -->
+    <div id="orbit-splash">
+        <div class="splash-content">
+            <div class="splash-logo-container">
+                <img src="img/orbit_poker_chip_v2.png" alt="Orbit Logo" class="splash-logo">
+                <div class="splash-scan-line"></div>
+            </div>
+            <div class="splash-text-box">
+                <div class="splash-title">ORBIT ALPHA</div>
+                <div class="splash-subtitle">Iniciando Protocolo de Vigilancia...</div>
+                <div class="splash-loader-bar">
+                    <div class="splash-progress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CORNER WATERMARK -->
+    <div class="orbit-watermark">
+        <img src="img/orbit_poker_chip_v2.png" alt="Orbit Watermark">
+    </div>
 
     <nav>
         <a href="#" class="logo-box">
@@ -901,9 +1228,34 @@
 
     <div class="live-status">
         <div class="pulse-dot"></div>
-        <span style="font-size: 12px; font-weight: 900; letter-spacing: 2px; color: var(--cyan-neon);">PROTOCOL
+        <span
+            style="font-size: 12px; font-weight: 900; letter-spacing: 2px; color: var(--cyan-neon); margin-right: 15px;">PROTOCOL
             ONLINE</span>
+
+        <!-- AUDIO MISSION CONTROL -->
+        <div id="mission-audio-control" class="audio-toggle" onclick="toggleMissionMusic()"
+            title="Sincronizar Banda Sonora">
+            <div class="audio-bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <span id="audio-status-text"
+                style="font-size: 10px; font-weight: 700; color: var(--text-dim); letter-spacing: 1px;">SOUND:
+                OFF</span>
+        </div>
     </div>
+
+    <!-- SOUNDTRACK ELEMENT (Async) -->
+    <audio id="official-soundtrack" loop preload="none">
+        <source src="assets/sounds/mision_fabrica.wav" type="audio/wav">
+    </audio>
+    <audio id="heartbeat-audio" loop preload="none">
+        <source src="assets/sounds/heartbeat.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="clock-audio" loop preload="none">
+        <source src="assets/sounds/clock.mp3" type="audio/mpeg">
+    </audio>
 
     <style>
         @keyframes wave {
@@ -919,6 +1271,134 @@
         }
     </style>
 
+    <script>
+        // Splash Screen Fade Out
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('orbit-splash');
+            if (splash) {
+                setTimeout(() => {
+                    splash.classList.add('fade-out');
+                    setTimeout(() => splash.remove(), 1500);
+                }, 8500);
+            }
+        });
+
+        // Official Soundtrack Engine (Sync V2)
+        const audio = document.getElementById('official-soundtrack');
+        const heartbeat = document.getElementById('heartbeat-audio');
+        const clock = document.getElementById('clock-audio');
+        const audioControl = document.getElementById('mission-audio-control');
+        const audioText = document.getElementById('audio-status-text');
+
+        // Visual Target Elements
+        const splashLogo = document.querySelector('.splash-logo');
+        const headerLogo = document.querySelector('.logo-img');
+        const waterMark = document.querySelector('.orbit-watermark img');
+
+        let audioCtx, analyser, dataArray, source;
+        let isSyncing = false;
+
+        function initAudioSync() {
+            if (audioCtx) return;
+
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioCtx.createAnalyser();
+            analyser.fftSize = 256;
+
+            const bufferLength = analyser.frequencyBinCount;
+            dataArray = new Uint8Array(bufferLength);
+
+            // Connect main audio
+            source = audioCtx.createMediaElementSource(audio);
+            source.connect(analyser);
+            analyser.connect(audioCtx.destination);
+
+            // Connect heartbeat (optional: separate analyzer for precision, but let's optimize with one for now or just volume tracking)
+            const hSource = audioCtx.createMediaElementSource(heartbeat);
+            hSource.connect(audioCtx.destination); // Direct to speakers
+
+            const cSource = audioCtx.createMediaElementSource(clock);
+            cSource.connect(audioCtx.destination);
+
+            isSyncing = true;
+            renderSync();
+        }
+
+        function renderSync() {
+            if (!isSyncing) return;
+            requestAnimationFrame(renderSync);
+
+            analyser.getByteFrequencyData(dataArray);
+
+            // 1. Analyze Core Intensity (Bass range) for Vibration
+            let sum = 0;
+            for (let i = 0; i < 5; i++) sum += dataArray[i];
+            const bassIntensity = sum / 5;
+
+            // 2. Trigger System Shake on high intensity peaks
+            if (bassIntensity > 200) {
+                document.body.classList.add('vibrating');
+            } else {
+                document.body.classList.remove('vibrating');
+            }
+
+            // 3. Dynamic Glow based on average intensity
+            const avgIntensity = dataArray.reduce((a, b) => a + b) / dataArray.length;
+            const glowSize = 10 + (avgIntensity / 2);
+            const opacity = 0.3 + (avgIntensity / 255);
+
+            const glowStyle = `0 0 ${glowSize}px rgba(0, 242, 255, ${opacity})`;
+            if (splashLogo) splashLogo.style.boxShadow = glowStyle;
+            if (headerLogo) headerLogo.style.boxShadow = glowStyle;
+        }
+
+        function toggleMissionMusic() {
+            initAudioSync();
+
+            if (audio.paused) {
+                // Audio Context Resume for user gesture compliance
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                audio.play();
+                heartbeat.play();
+                clock.play();
+
+                audioControl.classList.add('active');
+                audioText.innerText = "SOUND: ON";
+                audioText.style.color = "var(--cyan-neon)";
+            } else {
+                audio.pause();
+                heartbeat.pause();
+                clock.pause();
+
+                audioControl.classList.remove('active');
+                audioText.innerText = "SOUND: OFF";
+                audioText.style.color = "var(--text-dim)";
+                document.body.classList.remove('vibrating');
+            }
+        }
+
+        // Clock Sync Logic: Accurate flash every 1s
+        clock.addEventListener('play', () => {
+            const flashInterval = setInterval(() => {
+                if (clock.paused) {
+                    clearInterval(flashInterval);
+                    return;
+                }
+                const logo = document.querySelector('.logo-img');
+                if (logo) {
+                    logo.classList.add('clock-flash');
+                    setTimeout(() => logo.classList.remove('clock-flash'), 200);
+                }
+            }, 1000);
+        });
+
+        // Auto-play attempt on first interaction
+        document.body.addEventListener('click', () => {
+            // Optional: init on first click to avoid audio issues
+            // initAudioSync();
+        }, { once: true });
+    </script>
 </body>
 
 </html>

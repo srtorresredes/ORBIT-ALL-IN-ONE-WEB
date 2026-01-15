@@ -8,6 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@500;700;900&display=swap"
         rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="orbit_icon.ico">
 
     <!-- ORBIT CONFIG: API Keys Loader -->
     <script src="config.js"></script>
@@ -326,6 +327,45 @@
             font-weight: 900;
         }
 
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes glitch-text {
+            0% {
+                transform: translate(0);
+                text-shadow: -2px 0 var(--magenta-neon), 2px 0 var(--cyan-neon);
+            }
+
+            20% {
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                transform: translate(-2px, -2px);
+                text-shadow: 2px 0 var(--magenta-neon), -2px 0 var(--cyan-neon);
+            }
+
+            60% {
+                transform: translate(2px, 2px);
+            }
+
+            80% {
+                transform: translate(2px, -2px);
+                text-shadow: -2px 0 var(--magenta-neon), 2px 0 var(--cyan-neon);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
         @media (max-width: 768px) {
 
             .contact-section,
@@ -386,26 +426,40 @@
                     </select>
                 </div>
 
-                <!-- VARIABLE 1: DEDICACIÓN AL POKER -->
                 <div class="input-group">
-                    <label>Dedicación al Poker (Horas/Semana)</label>
-                    <select id="user-poker-hours" required>
-                        <option value="" disabled selected>Experiencia de campo</option>
-                        <option value="Recreacional (< 5h)">Recreacional (< 5h)</option>
-                        <option value="Semi-Pro (5-20h)">Semi-Pro (5-20h)</option>
-                        <option value="Grinder (20-40h)">Grinder (20-40h)</option>
-                        <option value="High Volume (> 40h)">High Volume (> 40h)</option>
+                    <label>Volumen Mensual y Software</label>
+                    <input type="text" id="user-volume" placeholder="Manos/MTTs al mes y software (HM3, H2N...)"
+                        required>
+                </div>
+
+                <div class="input-group">
+                    <label>Enlace Stream / Redes</label>
+                    <input type="text" id="user-stream-link" placeholder="Twitch / YouTube / Social" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Media de Espectadores (si aplica)</label>
+                    <input type="text" id="user-viewers" placeholder="CCV Media">
+                </div>
+
+                <div class="input-group">
+                    <label>Configuración de APIs (Modo Zen)</label>
+                    <select id="user-api-exp" required>
+                        <option value="" disabled selected>¿Sabes configurar API Keys?</option>
+                        <option value="Experto">Sí, tengo experiencia con APIs</option>
+                        <option value="Intermedio">He configurado algunas cosas básicas</option>
+                        <option value="Principiante">No, pero estoy dispuesto a aprender</option>
+                        <option value="Pendiente">Prefiero ayuda técnica</option>
                     </select>
                 </div>
 
-                <!-- VARIABLE 2: DEDICACIÓN AL STREAM -->
-                <div class="input-group">
-                    <label>Dedicación al Stream (Horas/Semana)</label>
-                    <select id="user-stream-hours" required>
-                        <option value="0">0 horas (Solo Pro Player)</option>
-                        <option value="1-5">1-5 horas semanales</option>
-                        <option value="5-15">5-15 horas semanales</option>
-                        <option value="15+">Más de 15 horas (Full-time)</option>
+                <div class="input-group full-width">
+                    <label>Compromiso de Reporte de Bugs</label>
+                    <select id="user-commit" required>
+                        <option value="" disabled selected>¿Te comprometes a documentar errores?</option>
+                        <option value="Total">Sí, documentaré y compartiré fallos en el hilo</option>
+                        <option value="Solo_Feedback">Solo feedback ocasional</option>
+                        <option value="No">No puedo comprometerme</option>
                     </select>
                 </div>
             </div>
@@ -434,10 +488,18 @@
                 </label>
             </div>
 
-            <button type="button" class="submit-btn" onclick="submitForm()">ESTABLECER ENLACE ALPHA</button>
+            <div
+                style="margin-top: 20px; text-align: center; font-size: 11px; color: var(--text-dim); margin-bottom: 25px;">
+                ⚠️ <b>AVISO LEGAL:</b> El envío de esta solicitud no garantiza el acceso. La administración de ORBIT
+                revisará tu perfil técnico antes de enviarte el enlace de acceso al grupo de desarrollo.
+            </div>
+
+            <button type="button" class="submit-btn" onclick="submitForm()">ESTABLECER ENLACE ALPHA <span
+                    style="display:block; font-size: 9px; opacity: 0.7; margin-top: 5px;">Lee el manual anclado en
+                    Telegram al entrar</span></button>
         </form>
 
-        <a href="index.html" class="back-link">← Volver al Centro de Mando</a>
+        <a href="index.html" class="back-link">← Volver al Inicio</a>
 
         <div class="telegram-links-box">
             <a href="https://t.me/OrbitAllInPoker" target="_blank" class="tg-link">
@@ -471,19 +533,22 @@
             const email = document.getElementById('user-email').value;
             const telegram = document.getElementById('user-telegram').value;
             const level = document.getElementById('user-level').value;
-            const pokerHours = document.getElementById('user-poker-hours').value;
-            const streamHours = document.getElementById('user-stream-hours').value;
+            const volume = document.getElementById('user-volume').value;
+            const streamLink = document.getElementById('user-stream-link').value;
+            const viewers = document.getElementById('user-viewers').value;
+            const apiExp = document.getElementById('user-api-exp').value;
+            const commit = document.getElementById('user-commit').value;
             const btn = document.querySelector('.submit-btn');
 
-            if (!name || !email || !level || !pokerHours) {
-                alert('⚠️ IDENTIDAD INCOMPLETA: Nombre, Email, Nivel y Dedicación al Poker son mandatorios.');
+            if (!name || !email || !level || !volume || !streamLink) {
+                alert('⚠️ PROTOCOLO INCOMPLETO: Todos los campos marcados como obligatorios deben ser procesados.');
                 return;
             }
 
             const selectedAreas = Array.from(document.querySelectorAll('input[name="area"]:checked'))
                 .map(cb => cb.closest('.area-option').querySelector('.area-text b').textContent);
 
-            btn.textContent = "📡 ESTABLECIENDO CONEXIÓN CON CENTRAL...";
+            btn.textContent = "📡 SINCRONIZANDO DATOS CON EL CORE DE ORBIT...";
             btn.disabled = true;
             btn.style.opacity = '0.6';
 
@@ -492,24 +557,27 @@
                     nombre: name,
                     telegram: telegram || 'Pendiente',
                     nivel_poker: level,
-                    horas_poker: pokerHours,
-                    horas_stream: streamHours,
+                    volumen_software: volume,
+                    enlace_stream: streamLink,
+                    media_viewers: viewers || 'N/A',
+                    experiencia_api: apiExp,
+                    compromiso_bugs: commit,
                     roles: selectedAreas.join(', ') || 'Explorador General'
                 });
 
-                btn.textContent = "✅ CONEXIÓN EXITOSA";
+                btn.textContent = "✅ SOLICITUD ENVIADA AL BÚNKER";
                 btn.style.background = 'linear-gradient(135deg, #00ff00, #004400)';
 
                 setTimeout(() => {
-                    document.getElementById('collab-form').reset();
-                    document.querySelectorAll('.area-option').forEach(opt => opt.classList.remove('selected'));
-                    btn.textContent = "ESTABLECER ENLACE ALPHA";
-                    btn.disabled = false;
-                    btn.style.opacity = '1';
-                    btn.style.background = '';
-                    // Redirigir a comunidad tras registro exitoso
-                    window.location.href = "https://t.me/OrbitAlphaComunidad";
-                }, 2500);
+                    document.getElementById('collab-form').innerHTML = `
+                        <div style="text-align: center; padding: 40px; animation: glitch-text 0.5s;">
+                            <img src="img/orbit_poker_chip_v2.png" style="width: 120px; animation: spin 4s infinite linear; border-radius: 50%; border: 2px solid var(--cyan-neon); box-shadow: 0 0 30px var(--cyan-glow);">
+                            <h2 style="font-family: 'Outfit', sans-serif; color: var(--cyan-neon); margin-top: 30px;">PROCESAMIENTO COMPLETADO</h2>
+                            <p style="color: var(--text-dim); margin-top: 15px;">Tus datos han sido segmentados y encriptados.<br>Espera nuestra respuesta en Telegram.</p>
+                            <a href="https://t.me/OrbitAlphaComunidad" class="btn btn-orbit" style="display:inline-block; margin-top: 30px; text-decoration: none; background: var(--cyan-neon); color: #000; padding: 15px 30px; border-radius: 10px; font-weight: 900;">ACCEDER AL CANAL ALPHA</a>
+                        </div>
+                    `;
+                }, 1500);
             } catch (error) {
                 console.error('Error:', error);
                 btn.textContent = "❌ ERROR DE CONEXIÓN";
