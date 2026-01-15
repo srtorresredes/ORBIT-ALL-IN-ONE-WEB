@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit OBS Overlay</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --cyan-neon: #00f2ff;
+            --cyan-glow: rgba(0, 242, 255, 0.4);
+            --bg-glass: rgba(0, 10, 20, 0.85);
+            --border: rgba(0, 242, 255, 0.3);
+            --text-main: #ffffff;
+            --positive: #00ff9d;
+            --negative: #ff0055;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: transparent;
+            /* CLAVE PARA OBS */
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-start;
+            /* O flex-end según prefiera */
+        }
+
+        /* CONTENEDOR PRINCIPAL DEL HUD */
+        .orbit-hud-strip {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            /* Estilo píldora futurista */
+            padding: 8px 25px;
+            /* Ajustado */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 10px var(--cyan-glow);
+            backdrop-filter: blur(10px);
+            animation: hud-float 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        /* LINEA DE ESCANEO DECORATIVA */
+        .orbit-hud-strip::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+            box-shadow: inset 0 0 15px var(--cyan-glow);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* SECCIONES DEL HUD */
+        .hud-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 15px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            height: 40px;
+        }
+
+        .hud-section:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .hud-section:first-child {
+            padding-left: 0;
+        }
+
+        /* LOGO / IDENTIDAD */
+        .hud-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hud-logo {
+            width: 32px;
+            height: 32px;
+            background: url('img/orbit_poker_chip_v2.png') no-repeat center/contain;
+            animation: spin-slow 10s linear infinite;
+        }
+
+        .hud-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .hud-title span:first-child {
+            font-size: 14px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .hud-title span:last-child {
+            font-size: 9px;
+            color: var(--cyan-neon);
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 1px;
+        }
+
+        /* ESTADÍSTICAS */
+        .hud-stat {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hud-label {
+            font-size: 8px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .hud-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+
+        .hud-value.positive {
+            color: var(--positive);
+        }
+
+        .hud-value.negative {
+            color: var(--negative);
+        }
+
+        /* LED DE ESTADO */
+        .status-led {
+            width: 8px;
+            height: 8px;
+            background: var(--cyan-neon);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--cyan-neon);
+            animation: pulse-led 1s infinite alternate;
+        }
+
+        /* ANIMACIONES */
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse-led {
+            from {
+                opacity: 1;
+                box-shadow: 0 0 10px var(--cyan-neon);
+            }
+
+            to {
+                opacity: 0.4;
+                box-shadow: 0 0 2px var(--cyan-neon);
+            }
+        }
+
+        @keyframes hud-float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        /* EFECTO GLITCH SIMPLE AL CARGAR */
+        .orbit-hud-strip {
+            animation: appear 0.5s ease-out forwards;
+        }
+
+        @keyframes appear {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HUD CONTAINER -->
+    <div class="orbit-hud-strip">
+
+        <!-- BLOQUE 1: IDENTIDAD -->
+        <div class="hud-section">
+            <div class="hud-brand">
+                <div class="hud-logo"></div> <!-- Requiere img/orbit_poker_chip_v2.png relativa -->
+                <div class="hud-title">
+                    <span>ORBIT</span>
+                    <span>PROTOCOL: ACTIVE</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOQUE 2: SESSION TIME -->
+        <div class="hud-section">
+            <div class="hud-stat">
+                <span class="hud-label">SESSION TIME</span>
+                <span class="hud-value" id="session-timer">00:00:00</span>
+            </div>
+        </div>
+
+        <!-- BLOQUE 3: NET PROFIT (SIMULATED / PLACEHOLDER) -->
+        <div class="hud-section">
+            <div class="hud-stat">
+                <span class="hud-label">SESSION PROFIT</span>
+                <!-- Puedes editar esto manualmente o conectarlo vía JS si tuvieras backend -->
+                <span class="hud-value positive" id="session-profit">+ 0.00 BB</span>
+            </div>
+        </div>
+
+        <!-- BLOQUE 4: ACTIVE TABLES -->
+        <div class="hud-section">
+            <div class="hud-stat">
+                <span class="hud-label">TABLES</span>
+                <span class="hud-value" style="color: var(--cyan-neon);">0</span>
+            </div>
+        </div>
+
+        <!-- BLOQUE 5: ESTADO -->
+        <div class="hud-section" style="padding-right: 5px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="status-led"></div>
+                <span
+                    style="font-size: 9px; font-weight: 800; color: var(--cyan-neon); letter-spacing: 1px;">ONLINE</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // SCRIPT: RELOJ DE SESIÓN SIMPLE
+        // Inicia un contador desde que se carga la fuente en OBS
+        let seconds = 0;
+        const timerEl = document.getElementById('session-timer');
+
+        function pad(val) { return val > 9 ? val : "0" + val; }
+
+        setInterval(() => {
+            seconds++;
+            const h = Math.floor(seconds / 3600);
+            const m = Math.floor((seconds % 3600) / 60);
+            const s = seconds % 60;
+            timerEl.innerText = `${pad(h)}:${pad(m)}:${pad(s)}`;
+        }, 1000);
+
+        // OPCIONAL: SIMULACIÓN DE ACTIVIDAD (SI SE DESEA)
+        // Puedes descomentar esto para que parezca que "hace cosas" si no tienes datos reales conectados.
+        /*
+        setInterval(() => {
+            const led = document.querySelector('.status-led');
+            led.style.background = Math.random() > 0.5 ? '#00f2ff' : '#00ff9d';
+        }, 2000);
+        */
+    </script>
+</body>
+
+</html>
