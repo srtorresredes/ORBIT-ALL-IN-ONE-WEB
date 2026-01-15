@@ -385,6 +385,20 @@
                         <option value="MTT_High">MTT High ABI (> 100€)</option>
                     </select>
                 </div>
+
+                <!-- VARIABLE 1: DEDICACIÓN AL POKER -->
+                <div class="input-group">
+                    <label>Dedicación al Poker (Horas/Semana)</label>
+                    <select id="user-poker-hours" required>
+                        <option value="" disabled selected>Experiencia de campo</option>
+                        <option value="Recreacional (< 5h)">Recreacional (< 5h)</option>
+                        <option value="Semi-Pro (5-20h)">Semi-Pro (5-20h)</option>
+                        <option value="Grinder (20-40h)">Grinder (20-40h)</option>
+                        <option value="High Volume (> 40h)">High Volume (> 40h)</option>
+                    </select>
+                </div>
+
+                <!-- VARIABLE 2: DEDICACIÓN AL STREAM -->
                 <div class="input-group">
                     <label>Dedicación al Stream (Horas/Semana)</label>
                     <select id="user-stream-hours" required>
@@ -457,11 +471,12 @@
             const email = document.getElementById('user-email').value;
             const telegram = document.getElementById('user-telegram').value;
             const level = document.getElementById('user-level').value;
+            const pokerHours = document.getElementById('user-poker-hours').value;
             const streamHours = document.getElementById('user-stream-hours').value;
             const btn = document.querySelector('.submit-btn');
 
-            if (!name || !email || !level) {
-                alert('⚠️ IDENTIDAD INCOMPLETA: Nombre, Email y Nivel son datos mandatorios para el protocolo.');
+            if (!name || !email || !level || !pokerHours) {
+                alert('⚠️ IDENTIDAD INCOMPLETA: Nombre, Email, Nivel y Dedicación al Poker son mandatorios.');
                 return;
             }
 
@@ -477,6 +492,7 @@
                     nombre: name,
                     telegram: telegram || 'Pendiente',
                     nivel_poker: level,
+                    horas_poker: pokerHours,
                     horas_stream: streamHours,
                     roles: selectedAreas.join(', ') || 'Explorador General'
                 });
