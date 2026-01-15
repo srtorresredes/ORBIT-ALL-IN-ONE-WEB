@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ORBIT ALPHA 1.0 // El Cerebro Artificial para Poker Streamers</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@500;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+    <link data-font="orbit-elite"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="orbit_icon.ico">
 
@@ -15,6 +15,9 @@
 
     <style>
         :root {
+            --font-display: 'Orbitron', sans-serif;
+            --font-tech: 'Share Tech Mono', monospace;
+            --bg-grid-color: rgba(0, 242, 255, 0.03);
             --bg-dark: #02050a;
             --bg-deep: #000000;
             --card-bg: rgba(10, 15, 25, 0.85);
@@ -39,15 +42,49 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-tech) !important;
             background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
+            background-size: 40px 40px;
             background-image:
-                radial-gradient(circle at 15% 30%, rgba(0, 242, 255, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 85% 70%, rgba(255, 0, 255, 0.08) 0%, transparent 40%),
-                url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+                linear-gradient(to right, var(--bg-grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--bg-grid-color) 1px, transparent 1px),
+                radial-gradient(circle at 50% 50%, #050a14 0%, #000 100%);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        .logo-text,
+        .hero-badge,
+        .nav-link,
+        .btn,
+        .tag,
+        .hud-value,
+        .hud-label,
+        .faq-item h3 {
+            font-family: var(--font-display) !important;
+            letter-spacing: 1px;
+        }
+
+        .live-status {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            bottom: auto;
+            left: auto;
+            background: rgba(0, 10, 20, 0.95);
+            border: 1px solid var(--cyan-neon);
+            padding: 10px 25px;
+            border-radius: 4px;
+            z-index: 9999;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(10px);
         }
 
         /* --- Custom Scrollbar --- */
